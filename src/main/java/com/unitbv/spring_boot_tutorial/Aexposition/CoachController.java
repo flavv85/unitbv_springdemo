@@ -19,10 +19,10 @@ import java.util.List;
 @RequestMapping("/api/coach")
 public class CoachController {
 
-    ConsultAllCoaches consultAllCoaches;
-    CoachMapperService coachMapperService;
-    ConsultCoachById consultCoachById;
-    CreateCoach createCoach;
+    private final ConsultAllCoaches consultAllCoaches;
+    private final CoachMapperService coachMapperService;
+    private final ConsultCoachById consultCoachById;
+    private final CreateCoach createCoach;
 
     @GetMapping
     public List<CoachDto> consultAll() {
@@ -47,7 +47,7 @@ public class CoachController {
     }
 
     // pass pathVariable
-    @GetMapping("/{id}")
+    @GetMapping("/{coachId}")
     public ResponseEntity<CoachDto> consultById(@PathVariable String coachId) {
         return new ResponseEntity<>(coachMapperService.mapFromDomain(consultCoachById.consult(coachId)), HttpStatus.OK);
     }

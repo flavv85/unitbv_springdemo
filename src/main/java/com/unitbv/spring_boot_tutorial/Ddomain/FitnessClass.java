@@ -16,11 +16,11 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class FitnessClass {
 
     @ManyToOne
     @JoinColumn(name = "coach_id", nullable = false)
-//    @Column(name = "coach", nullable = false)
     Coach coach;
 
     @Id
@@ -41,6 +41,7 @@ public class FitnessClass {
     Set<Member> members = new HashSet<>();
 
 
+    //TODO add a method to check if the duration is valid >1 && <3 hours
     public boolean isIntervalValid() {
         Long duration = duration();
         return duration >= 1L && duration <= 3L;
@@ -48,6 +49,6 @@ public class FitnessClass {
 
     public Long duration() {
         return Duration.between(this.startTime, this.endTime).toHours();
-
     }
+
 }

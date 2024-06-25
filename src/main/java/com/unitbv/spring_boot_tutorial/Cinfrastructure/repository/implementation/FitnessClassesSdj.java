@@ -6,10 +6,12 @@ import com.unitbv.spring_boot_tutorial.Ddomain.FitnessClasses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public class FitnessClassesSdj implements FitnessClasses {
+
     @Autowired
     private final FitnessClassRepository fitnessClassRepository;
 
@@ -20,5 +22,15 @@ public class FitnessClassesSdj implements FitnessClasses {
     @Override
     public Optional<FitnessClass> getById(String id) {
       return fitnessClassRepository.findById(id);
+    }
+
+    @Override
+    public List<FitnessClass> getAllFitnessClasses() {
+        return fitnessClassRepository.findAll();
+    }
+
+    @Override
+    public void createOrUpdate(FitnessClass fitnessClass) {
+        fitnessClassRepository.save(fitnessClass);
     }
 }
