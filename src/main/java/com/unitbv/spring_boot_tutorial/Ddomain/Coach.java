@@ -69,4 +69,5 @@ public class Coach {
         fitnessClasses.remove(fitnessClass);
         fitnessClass.setCoach(null);
     }
+
 }
