@@ -20,13 +20,15 @@ public class Coach {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "coach", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<FitnessClass> fitnessClasses = new ArrayList<>();
+//    @OneToMany(mappedBy = "coach", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<FitnessClass> fitnessClasses = new ArrayList<>();
 
-    public Coach(String id, String name, List<FitnessClass> fitnessClasses) {
+    public Coach(String id, String name
+//                 ,List<FitnessClass> fitnessClasses
+    ) {
         this.id = id;
         this.name = name;
-        this.fitnessClasses = fitnessClasses;
+//        this.fitnessClasses = fitnessClasses;
     }
 
     public Coach() {
@@ -48,13 +50,13 @@ public class Coach {
         this.name = name;
     }
 
-    public List<FitnessClass> getFitnessClasses() {
-        return fitnessClasses;
-    }
-
-    public void setFitnessClasses(List<FitnessClass> fitnessClasses) {
-        this.fitnessClasses = fitnessClasses;
-    }
+//    public List<FitnessClass> getFitnessClasses() {
+//        return fitnessClasses;
+//    }
+//
+//    public void setFitnessClasses(List<FitnessClass> fitnessClasses) {
+//        this.fitnessClasses = fitnessClasses;
+//    }
 
     //TODO add specific methods for adding/removing a fitness class from a coach to have a bidirectional @ManyToOne relation
 

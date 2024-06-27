@@ -3,8 +3,10 @@ package com.unitbv.spring_boot_tutorial.Aexposition.mappers;
 import com.unitbv.spring_boot_tutorial.Aexposition.dto.CoachDto;
 import com.unitbv.spring_boot_tutorial.Aexposition.dto.CreateCoachDto;
 import com.unitbv.spring_boot_tutorial.Aexposition.dto.FitnessClassDto;
+import com.unitbv.spring_boot_tutorial.Cinfrastructure.repository.implementation.FitnessClassesSdj;
 import com.unitbv.spring_boot_tutorial.Ddomain.Coach;
 import com.unitbv.spring_boot_tutorial.Ddomain.FitnessClass;
+import com.unitbv.spring_boot_tutorial.Ddomain.FitnessClasses;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -17,11 +19,15 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CoachMapperService {
 
+    FitnessClasses fitnessClasses;
+
     public CoachDto mapFromDomain(Coach coach) {
         CoachDto coachDto = CoachDto.builder()
                 .id(coach.getId())
                 .name(coach.getName())
-                .fitnessClasses(coach.getFitnessClasses().stream().map(this::mapFitnessClassFromDomain).toList())
+                //TODO populate fitness classes from repo instead of using bidirectional mapping
+                .fitnessClasses(fitnessClasses.getAllFitnessClassesByCoachId(coach.getId()).stream().map(this::mapFitnessClassFromDomain).toList())
+//                .fitnessClasses(coach.getFitnessClasses().stream().map(this::mapFitnessClassFromDomain).toList())
                 .build();
         return coachDto;
     }

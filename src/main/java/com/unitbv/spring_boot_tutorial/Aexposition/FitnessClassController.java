@@ -39,4 +39,6 @@ public class FitnessClassController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+
+
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-
+//TODO dependency injection using @Autowired and constructor
 @Repository
 public class FitnessClassesSdj implements FitnessClasses {
 
@@ -32,5 +32,10 @@ public class FitnessClassesSdj implements FitnessClasses {
     @Override
     public void createOrUpdate(FitnessClass fitnessClass) {
         fitnessClassRepository.save(fitnessClass);
+    }
+
+    @Override
+    public List<FitnessClass> getAllFitnessClassesByCoachId(String coachId) {
+        return fitnessClassRepository.findAllByCoachId(coachId);
     }
 }
