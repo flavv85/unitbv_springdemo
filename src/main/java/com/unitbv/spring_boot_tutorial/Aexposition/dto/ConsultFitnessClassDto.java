@@ -14,5 +14,5 @@ public class ConsultFitnessClassDto {
     String endTime;
     String duration;
     String coachName;
-    //TODO add the list of members attending fitness class and display only their nickname
+    //TODO !add the list of members attending fitness class and display only their nickname
 }

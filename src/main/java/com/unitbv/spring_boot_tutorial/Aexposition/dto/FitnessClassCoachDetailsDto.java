@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 //@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class FitnessClassDto {
+public class FitnessClassCoachDetailsDto {
 
     String id;
     String duration;

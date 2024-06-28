@@ -1,6 +1,6 @@
 package com.unitbv.spring_boot_tutorial.Aexposition;
 
-import com.unitbv.spring_boot_tutorial.Aexposition.dto.CoachDto;
+import com.unitbv.spring_boot_tutorial.Aexposition.dto.ConsultCoachDto;
 import com.unitbv.spring_boot_tutorial.Aexposition.dto.CreateCoachDto;
 import com.unitbv.spring_boot_tutorial.Aexposition.mappers.CoachMapperService;
 import com.unitbv.spring_boot_tutorial.Bapplication.coach.ConsultAllCoaches;
@@ -25,36 +25,36 @@ public class CoachController {
     private final CreateCoach createCoach;
 
     @GetMapping
-    public List<CoachDto> consultAll() {
+    public List<ConsultCoachDto> consultAll() {
         List<Coach> coachList = consultAllCoaches.consult();
-        List<CoachDto> coachDtoList = coachList.stream().map(coach -> coachMapperService.mapFromDomain(coach)).toList();
-        return coachDtoList;
+        List<ConsultCoachDto> consultCoachDtoList = coachList.stream().map(coach -> coachMapperService.mapFromDomain(coach)).toList();
+        return consultCoachDtoList;
     }
 
     // return response entity
     @GetMapping("/re")
-    public ResponseEntity<List<CoachDto>> consultAll2() {
+    public ResponseEntity<List<ConsultCoachDto>> consultAll2() {
         List<Coach> coachList = consultAllCoaches.consult();
-        List<CoachDto> coachDtoList = coachList.stream().map(coach -> coachMapperService.mapFromDomain(coach)).toList();
-        return ResponseEntity.ok(coachDtoList);
+        List<ConsultCoachDto> consultCoachDtoList = coachList.stream().map(coach -> coachMapperService.mapFromDomain(coach)).toList();
+        return ResponseEntity.ok(consultCoachDtoList);
     }
 
     @GetMapping("/name/{name}")
-    public ResponseEntity<List<CoachDto>> consultAllByName(@PathVariable String name) {
+    public ResponseEntity<List<ConsultCoachDto>> consultAllByName(@PathVariable String name) {
         List<Coach> coachList = consultAllCoaches.consultByName(name);
-        List<CoachDto> coachDtoList = coachList.stream().map(coach -> coachMapperService.mapFromDomain(coach)).toList();
-        return ResponseEntity.ok(coachDtoList);
+        List<ConsultCoachDto> consultCoachDtoList = coachList.stream().map(coach -> coachMapperService.mapFromDomain(coach)).toList();
+        return ResponseEntity.ok(consultCoachDtoList);
     }
 
     // pass pathVariable
     @GetMapping("/{coachId}")
-    public ResponseEntity<CoachDto> consultById(@PathVariable String coachId) {
+    public ResponseEntity<ConsultCoachDto> consultById(@PathVariable String coachId) {
         return new ResponseEntity<>(coachMapperService.mapFromDomain(consultCoachById.consult(coachId)), HttpStatus.OK);
     }
 
     // pass requestParam
     @GetMapping("/by-id")
-    public ResponseEntity<CoachDto> consultById2(@RequestParam String coachId) {
+    public ResponseEntity<ConsultCoachDto> consultById2(@RequestParam String coachId) {
         return new ResponseEntity<>(coachMapperService.mapFromDomain(consultCoachById.consult(coachId)), HttpStatus.OK);
     }
 

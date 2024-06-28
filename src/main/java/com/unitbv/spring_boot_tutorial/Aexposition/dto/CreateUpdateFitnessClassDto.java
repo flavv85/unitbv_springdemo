@@ -7,11 +7,8 @@ import lombok.*;
 @Builder
 @Getter
 @Setter
-public class CreateFitnessClassDto {
-
+public class CreateUpdateFitnessClassDto {
     String startTime;
     String endTime;
     String coachId;
-
-
 }
