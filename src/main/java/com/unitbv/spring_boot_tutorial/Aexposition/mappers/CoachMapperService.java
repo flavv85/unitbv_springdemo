@@ -1,8 +1,8 @@
 package com.unitbv.spring_boot_tutorial.Aexposition.mappers;
 
-import com.unitbv.spring_boot_tutorial.Aexposition.dto.CoachDto;
+import com.unitbv.spring_boot_tutorial.Aexposition.dto.ConsultCoachDto;
 import com.unitbv.spring_boot_tutorial.Aexposition.dto.CreateCoachDto;
-import com.unitbv.spring_boot_tutorial.Aexposition.dto.FitnessClassDto;
+import com.unitbv.spring_boot_tutorial.Aexposition.dto.FitnessClassCoachDetailsDto;
 import com.unitbv.spring_boot_tutorial.Ddomain.Coach;
 import com.unitbv.spring_boot_tutorial.Ddomain.FitnessClass;
 import lombok.AccessLevel;
@@ -17,20 +17,20 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CoachMapperService {
 
-    public CoachDto mapFromDomain(Coach coach) {
-        CoachDto coachDto = CoachDto.builder()
+    public ConsultCoachDto mapFromDomain(Coach coach) {
+        ConsultCoachDto consultCoachDto = ConsultCoachDto.builder()
                 .id(coach.getId())
                 .name(coach.getName())
                 .fitnessClasses(coach.getFitnessClasses().stream().map(this::mapFitnessClassFromDomain).toList())
                 .build();
-        return coachDto;
+        return consultCoachDto;
     }
 
-    private FitnessClassDto mapFitnessClassFromDomain(FitnessClass fitnessClass) {
-        FitnessClassDto fitnessClassDto = new FitnessClassDto();
-        fitnessClassDto.setId(fitnessClass.getId());
-        fitnessClassDto.setDuration(fitnessClassDto.appendHourToDuration(String.valueOf(fitnessClass.duration())));
-        return fitnessClassDto;
+    private FitnessClassCoachDetailsDto mapFitnessClassFromDomain(FitnessClass fitnessClass) {
+        FitnessClassCoachDetailsDto fitnessClassCoachDetailsDto = new FitnessClassCoachDetailsDto();
+        fitnessClassCoachDetailsDto.setId(fitnessClass.getId());
+        fitnessClassCoachDetailsDto.setDuration(fitnessClassCoachDetailsDto.appendHourToDuration(String.valueOf(fitnessClass.duration())));
+        return fitnessClassCoachDetailsDto;
     }
 
     public Coach mapToEntity(CreateCoachDto dto) {

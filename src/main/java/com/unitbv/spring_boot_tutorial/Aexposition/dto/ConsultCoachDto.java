@@ -10,10 +10,10 @@ import java.util.List;
 @Builder
 // without getter or following annotation the object can not be serialized
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class CoachDto {
+public class ConsultCoachDto {
 
     public String id;
     public String name;
-    public List<FitnessClassDto> fitnessClasses;
+    public List<FitnessClassCoachDetailsDto> fitnessClasses;
 
 }

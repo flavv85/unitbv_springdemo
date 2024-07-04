@@ -1,7 +1,7 @@
 package com.unitbv.spring_boot_tutorial.Aexposition.mappers;
 
 import com.unitbv.spring_boot_tutorial.Aexposition.dto.ConsultFitnessClassDto;
-import com.unitbv.spring_boot_tutorial.Aexposition.dto.CreateFitnessClassDto;
+import com.unitbv.spring_boot_tutorial.Aexposition.dto.CreateUpdateFitnessClassDto;
 import com.unitbv.spring_boot_tutorial.Bapplication.coach.ConsultCoachById;
 import com.unitbv.spring_boot_tutorial.Ddomain.FitnessClass;
 import lombok.AccessLevel;
@@ -35,7 +35,7 @@ public class FitnessClassMapperService {
                .build();
     }
 
-    public FitnessClass mapToEntity(CreateFitnessClassDto dto) {
+    public FitnessClass mapToEntity(CreateUpdateFitnessClassDto dto) {
        return FitnessClass.builder()
                .id(UUID.randomUUID().toString())
                .coach(consultCoachById.consult(dto.getCoachId()))
