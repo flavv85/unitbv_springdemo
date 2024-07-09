@@ -33,4 +33,9 @@ public class FitnessClassesSdj implements FitnessClasses {
     public void createOrUpdate(FitnessClass fitnessClass) {
         fitnessClassRepository.save(fitnessClass);
     }
+
+    @Override
+    public void delete(FitnessClass fitnessClass) {
+        fitnessClassRepository.delete(fitnessClass);
+    }
 }
