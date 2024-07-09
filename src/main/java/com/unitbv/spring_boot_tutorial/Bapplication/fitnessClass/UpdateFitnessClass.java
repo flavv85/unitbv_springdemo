@@ -14,9 +14,9 @@ public class UpdateFitnessClass {
 
     FitnessClasses fitnessClasses;
 
-    public FitnessClass update(FitnessClass fitnessClass, String fitness_class_id) {
+    public FitnessClass update(FitnessClass fitnessClass, String fitnessClassId) {
 
-        fitnessClass.setId(fitness_class_id);
+        fitnessClass.setId(fitnessClassId);
 
         //TODO !add a validate method if coach id is missing or not existing
         //TODO !add a validate method to check if startTime < endTime and duration length is valid (see class method)

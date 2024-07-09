@@ -7,4 +7,5 @@ public interface FitnessClasses {
     Optional<FitnessClass> getById(String id);
     List<FitnessClass> getAllFitnessClasses();
     void createOrUpdate(FitnessClass fitnessClass);
+    void delete(FitnessClass fitnessClass);
 }

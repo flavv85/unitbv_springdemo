@@ -5,6 +5,7 @@ import com.unitbv.spring_boot_tutorial.Aexposition.dto.CreateUpdateFitnessClassD
 import com.unitbv.spring_boot_tutorial.Aexposition.mappers.FitnessClassMapperService;
 import com.unitbv.spring_boot_tutorial.Bapplication.fitnessClass.ConsultAllFitnessClasses;
 import com.unitbv.spring_boot_tutorial.Bapplication.fitnessClass.CreateFitnessClass;
+import com.unitbv.spring_boot_tutorial.Bapplication.fitnessClass.DeleteFitnessClass;
 import com.unitbv.spring_boot_tutorial.Bapplication.fitnessClass.UpdateFitnessClass;
 import com.unitbv.spring_boot_tutorial.Ddomain.FitnessClass;
 import lombok.AccessLevel;
@@ -26,6 +27,7 @@ public class FitnessClassController {
     FitnessClassMapperService fitnessClassMapperService;
     CreateFitnessClass createFitnessClass;
     UpdateFitnessClass updateFitnessClass;
+    DeleteFitnessClass deleteFitnessClass;
 
     @GetMapping
     public ResponseEntity<List<ConsultFitnessClassDto>> consultAll() {
@@ -47,6 +49,12 @@ public class FitnessClassController {
         FitnessClass fitnessClassUpdated = fitnessClassMapperService.mapToEntity(dto);
         //TODO return the dto of the updated entity
         return new ResponseEntity<>(fitnessClassMapperService.mapFromDomain(updateFitnessClass.update(fitnessClassUpdated, fitness_class_id)), HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<String> delete(@PathVariable String id) {
+        deleteFitnessClass.delete(id);
+        return ResponseEntity.ok("Fitness class deleted successfully");
     }
 
 }
