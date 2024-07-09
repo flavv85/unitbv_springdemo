@@ -1,11 +1,12 @@
 package com.unitbv.spring_boot_tutorial.Aexposition;
 
 import com.unitbv.spring_boot_tutorial.Aexposition.dto.ConsultCoachDto;
-import com.unitbv.spring_boot_tutorial.Aexposition.dto.CreateCoachDto;
+import com.unitbv.spring_boot_tutorial.Aexposition.dto.CreateUpdateCoachDto;
 import com.unitbv.spring_boot_tutorial.Aexposition.mappers.CoachMapperService;
 import com.unitbv.spring_boot_tutorial.Bapplication.coach.ConsultAllCoaches;
 import com.unitbv.spring_boot_tutorial.Bapplication.coach.ConsultCoachById;
 import com.unitbv.spring_boot_tutorial.Bapplication.coach.CreateCoach;
+import com.unitbv.spring_boot_tutorial.Bapplication.coach.UpdateCoach;
 import com.unitbv.spring_boot_tutorial.Ddomain.Coach;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ public class CoachController {
     private final CoachMapperService coachMapperService;
     private final ConsultCoachById consultCoachById;
     private final CreateCoach createCoach;
+    private final UpdateCoach updateCoach;
 
     @GetMapping
     public List<ConsultCoachDto> consultAll() {
@@ -53,16 +55,24 @@ public class CoachController {
     }
 
     // pass requestParam
-    @GetMapping("/by-id")
+    @GetMapping(value = "/by-id")
     public ResponseEntity<ConsultCoachDto> consultById2(@RequestParam String coachId) {
         return new ResponseEntity<>(coachMapperService.mapFromDomain(consultCoachById.consult(coachId)), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody CreateCoachDto dto) {
-        Coach toBePersistedCoach = coachMapperService.mapToEntity(dto);
+    public ResponseEntity<Void> create(@RequestBody CreateUpdateCoachDto dto) {
+        Coach toBePersistedCoach = coachMapperService.mapToEntity(dto, null);
         createCoach.create(toBePersistedCoach);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<ConsultCoachDto> updateCoach(
+            @PathVariable String id,
+            @RequestBody CreateUpdateCoachDto dto) {
+        Coach toBeUpdatedCoach = coachMapperService.mapToEntity(dto, id);
+        ConsultCoachDto response = coachMapperService.mapFromDomain(updateCoach.update(toBeUpdatedCoach));
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

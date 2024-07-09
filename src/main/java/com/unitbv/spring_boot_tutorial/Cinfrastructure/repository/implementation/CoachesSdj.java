@@ -38,4 +38,9 @@ public class CoachesSdj implements Coaches {
     public void createOrUpdate(Coach coach) {
         coachRepository.save(coach);
     }
+
+    @Override
+    public Coach createOrUpdate2(Coach coach) {
+        return coachRepository.save(coach);
+    }
 }
