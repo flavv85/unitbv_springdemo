@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.ObjectUtils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -50,22 +48,22 @@ public class CoachMapperService {
         Coach coach = new Coach();
         coach.setId(StringUtils.hasText(coachId) ? coachId : String.valueOf(UUID.randomUUID()));
         coach.setName(dto.getName());
-
-        List<FitnessClass> fitnessClasses = new ArrayList<>();
-
-        if (!CollectionUtils.isEmpty(dto.getFitnessClasses())) {
-            dto.getFitnessClasses().forEach(fitnessClass -> {
-                FitnessClass newFitnessClass = FitnessClass
-                        .builder()
-                        .id(UUID.randomUUID().toString())
-                        .coach(coach)
-                        .startTime(ObjectUtils.isEmpty(fitnessClass.getStartTime()) ? null : LocalDateTime.parse(fitnessClass.getStartTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")))
-                        .endTime(ObjectUtils.isEmpty(fitnessClass.getEndTime()) ? null : LocalDateTime.parse(fitnessClass.getEndTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")))
-                        .build();
-                fitnessClasses.add(newFitnessClass);
-            });
-        }
-        coach.setFitnessClasses(fitnessClasses);
+//
+//        List<FitnessClass> fitnessClasses = new ArrayList<>();
+//
+//        if (!CollectionUtils.isEmpty(dto.getFitnessClasses())) {
+//            dto.getFitnessClasses().forEach(fitnessClass -> {
+//                FitnessClass newFitnessClass = FitnessClass
+//                        .builder()
+//                        .id(UUID.randomUUID().toString())
+//                        .coach(coach)
+//                        .startTime(ObjectUtils.isEmpty(fitnessClass.getStartTime()) ? null : LocalDateTime.parse(fitnessClass.getStartTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")))
+//                        .endTime(ObjectUtils.isEmpty(fitnessClass.getEndTime()) ? null : LocalDateTime.parse(fitnessClass.getEndTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")))
+//                        .build();
+//                fitnessClasses.add(newFitnessClass);
+//            });
+//        }
+//        coach.setFitnessClasses(fitnessClasses);
         return coach;
     }
 
