@@ -12,4 +12,10 @@ public interface Coaches {
 
     void createOrUpdate(Coach coach);
 
+    Coach createOrUpdate2(Coach coach);
+
+    void deleteCoachNativeQuery(String coachId);
+
+    void delete(Coach coach);
+
 }

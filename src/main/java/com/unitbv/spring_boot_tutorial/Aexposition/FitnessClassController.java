@@ -1,12 +1,10 @@
 package com.unitbv.spring_boot_tutorial.Aexposition;
 
+import com.unitbv.spring_boot_tutorial.Aexposition.dto.AddMembersToFitnessClassDto;
 import com.unitbv.spring_boot_tutorial.Aexposition.dto.ConsultFitnessClassDto;
 import com.unitbv.spring_boot_tutorial.Aexposition.dto.CreateUpdateFitnessClassDto;
 import com.unitbv.spring_boot_tutorial.Aexposition.mappers.FitnessClassMapperService;
-import com.unitbv.spring_boot_tutorial.Bapplication.fitnessClass.ConsultAllFitnessClasses;
-import com.unitbv.spring_boot_tutorial.Bapplication.fitnessClass.CreateFitnessClass;
-import com.unitbv.spring_boot_tutorial.Bapplication.fitnessClass.DeleteFitnessClass;
-import com.unitbv.spring_boot_tutorial.Bapplication.fitnessClass.UpdateFitnessClass;
+import com.unitbv.spring_boot_tutorial.Bapplication.fitnessClass.*;
 import com.unitbv.spring_boot_tutorial.Ddomain.FitnessClass;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -28,11 +26,12 @@ public class FitnessClassController {
     CreateFitnessClass createFitnessClass;
     UpdateFitnessClass updateFitnessClass;
     DeleteFitnessClass deleteFitnessClass;
+    AddMembersToFitnessClass addMembersToFitnessClass;
 
     @GetMapping
     public ResponseEntity<List<ConsultFitnessClassDto>> consultAll() {
-        List<FitnessClass> coachList = consultAllFitnessClasses.consult();
-        List<ConsultFitnessClassDto> fitnessClassDtoList = coachList.stream().map(fitnessClassMapperService::mapFromDomain).toList();
+        List<FitnessClass> fitnessClasses = consultAllFitnessClasses.consult();
+        List<ConsultFitnessClassDto> fitnessClassDtoList = fitnessClasses.stream().map(fitnessClassMapperService::mapFromDomain).toList();
         return ResponseEntity.ok(fitnessClassDtoList);
     }
 
@@ -55,6 +54,12 @@ public class FitnessClassController {
     public ResponseEntity<String> delete(@PathVariable String id) {
         deleteFitnessClass.delete(id);
         return ResponseEntity.ok("Fitness class deleted successfully");
+    }
+
+    @PostMapping(value = "/add-members")
+    public ResponseEntity<Void> addMembers(@RequestBody AddMembersToFitnessClassDto dto){
+        addMembersToFitnessClass.addMembers(dto.getFitnessClassId(), dto.getMemberIds());
+        return ResponseEntity.ok().build();
     }
 
 }

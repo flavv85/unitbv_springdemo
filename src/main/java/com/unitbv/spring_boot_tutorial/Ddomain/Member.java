@@ -22,5 +22,4 @@ public class Member {
 
     @Column(name = "member_nickname", nullable = false)
     String nickname;
-
 }
