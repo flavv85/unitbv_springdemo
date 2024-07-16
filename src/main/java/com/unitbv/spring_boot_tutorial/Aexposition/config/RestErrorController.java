@@ -1,6 +1,6 @@
 package com.unitbv.spring_boot_tutorial.Aexposition.config;
 
-import com.unitbv.spring_boot_tutorial.Ddomain.exceptions.CoachNotPresent;
+import com.unitbv.spring_boot_tutorial.Ddomain.exceptions.BusinessException;
 import com.unitbv.spring_boot_tutorial.Ddomain.exceptions.UnknownObjectException;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -32,7 +32,7 @@ public class RestErrorController extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler()
-    public ResponseEntity<CustomErrorMessage> handleCoachNotPresent(CoachNotPresent exception) {
+    public ResponseEntity<CustomErrorMessage> handleBusinessException(BusinessException exception) {
         CustomErrorMessage customErrorMessage = CustomErrorMessage.builder()
                 .title("Unknown Object Exception")
                 .details(exception.getMessage())
