@@ -31,8 +31,8 @@ public class FitnessClassController {
 
     @GetMapping
     public ResponseEntity<List<ConsultFitnessClassDto>> consultAll() {
-        List<FitnessClass> coachList = consultAllFitnessClasses.consult();
-        List<ConsultFitnessClassDto> fitnessClassDtoList = coachList.stream().map(fitnessClassMapperService::mapFromDomain).toList();
+        List<FitnessClass> fitnessClasses = consultAllFitnessClasses.consult();
+        List<ConsultFitnessClassDto> fitnessClassDtoList = fitnessClasses.stream().map(fitnessClassMapperService::mapFromDomain).toList();
         return ResponseEntity.ok(fitnessClassDtoList);
     }
 
